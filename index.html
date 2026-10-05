@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173a36">
+  <meta name="description" content="Causeway is a local evidence-to-experiment workbench for exploring policy choices in shared systems.">
+  <title>Causeway — evidence to experiment</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="src/app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#overview" aria-label="Causeway home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span><strong>causeway</strong><small>evidence to experiment</small></span>
+      </a>
+
+      <div class="workspace-switch"><span class="workspace-dot"></span><span><small>WORKSPACE</small><strong>Watershed Commons</strong></span><span class="chevron">⌄</span></div>
+      <p class="nav-label">STUDIO</p>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <button class="nav-item active" data-view="overview" aria-label="Overview"><span class="nav-icon" aria-hidden="true">⌂</span><span>Overview</span><span class="nav-arrow" aria-hidden="true">↗</span></button>
+        <button class="nav-item" data-view="explore" aria-label="Experiments"><span class="nav-icon" aria-hidden="true">⌁</span><span>Experiments</span></button>
+        <button class="nav-item" data-view="model" aria-label="Model and assumptions"><span class="nav-icon" aria-hidden="true">◈</span><span>Model & assumptions</span></button>
+        <button class="nav-item" data-view="evidence" aria-label="Evidence library"><span class="nav-icon" aria-hidden="true">▤</span><span>Evidence library</span><span class="nav-count" id="sourceCount">0</span></button>
+        <button class="nav-item" data-view="ledger" aria-label="Run ledger"><span class="nav-icon" aria-hidden="true">◷</span><span>Run ledger</span><span class="nav-count" id="runCount">0</span></button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="local-card"><span class="local-symbol">⌑</span><div><strong>Stored on this device</strong><small>No account or server required</small></div><span class="live-dot"></span></div>
+        <button class="quiet-button" id="exportWorkspace">⇩ <span>Export workspace</span></button>
+        <button class="quiet-button" id="importWorkspace">⇧ <span>Import workspace</span></button>
+        <input type="file" id="importFile" accept="application/json,.json" hidden>
+        <div class="user-chip"><div class="avatar">KP</div><span><strong>Local researcher</strong><small>Private workspace</small></span><span class="more">•••</span></div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="breadcrumbs"><span>STUDIO</span><span class="crumb-sep">/</span><strong id="pageCrumb">Overview</strong></div>
+        <div class="topbar-right"><span class="model-badge"><i></i> SYNTHETIC MODEL</span><span class="top-divider"></span><span class="local-badge"><span class="live-dot"></span> LOCAL ONLY</span></div>
+      </header>
+
+      <section class="view active" id="view-overview" aria-labelledby="overviewTitle">
+        <div class="welcome-row">
+          <div><p class="eyebrow">WATERSHED COMMONS <span class="eyebrow-line"></span> FIELD LAB 01</p><h1 id="overviewTitle">Make the tradeoffs<br><em>visible before the vote.</em></h1><p class="lede">Compare shared water policies in a small, inspectable world. Follow every result back to its assumptions and sources.</p></div>
+          <div class="run-stamp"><span class="stamp-mark">01</span><span><small>LAB STATUS</small><strong id="labStatus">Ready for a first run</strong><small id="modelVersion">Model 0.2.0 · 52 weeks</small></span></div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-top"><span class="question-icon">?</span><div><small>WORKING QUESTION</small><strong>What are we trying to learn?</strong></div><span class="editable-tag">EDITABLE</span></div>
+          <textarea id="workingQuestion" rows="2" aria-label="Working question">How might a watershed partnership protect river health and small growers through a dry year?</textarea>
+          <div class="question-foot"><span>This frames the study. It does not change the model.</span><button class="text-button" data-go="explore">Design an experiment <span>→</span></button></div>
+        </div>
+
+        <div class="section-heading"><div><p class="eyebrow">YOUR CURRENT STUDY</p><h2>One system. Several ways forward.</h2></div><button class="outline-button" data-go="model">Inspect model <span>↗</span></button></div>
+        <div class="metric-grid" id="overviewMetrics">
+          <article class="metric-card"><div class="metric-label"><span class="metric-icon green">↗</span><span>Grower livelihood</span><span class="metric-scope">SIMULATED INDEX</span></div><strong class="metric-value">—</strong><div class="metric-foot"><span>No run yet</span><span class="metric-context">Relative crop success</span></div></article>
+          <article class="metric-card"><div class="metric-label"><span class="metric-icon blue">⌁</span><span>Basin health</span><span class="metric-scope">SIMULATED INDEX</span></div><strong class="metric-value">—</strong><div class="metric-foot"><span>No run yet</span><span class="metric-context">Water · habitat · storage</span></div></article>
+          <article class="metric-card"><div class="metric-label"><span class="metric-icon amber">⇌</span><span>Small-grower equity</span><span class="metric-scope">SIMULATED INDEX</span></div><strong class="metric-value">—</strong><div class="metric-foot"><span>No run yet</span><span class="metric-context">Per-grower outcomes</span></div></article>
+        </div>
+
+        <div class="lower-grid">
+          <article class="panel study-panel"><div class="panel-head"><div><p class="eyebrow">START HERE</p><h3>Run a matched policy study</h3></div><span class="arrow-stamp">↘</span></div><p>Four policy packages, the same weather events and the same starting worlds. Then inspect where the answer changes when assumptions change.</p><button class="primary-button" data-go="explore">Open experiment studio <span>→</span></button><div class="study-meta"><span><i class="meta-dot"></i> 4 paired model variants</span><span>52 simulated weeks</span></div></article>
+          <article class="panel pathway-panel"><div class="panel-head"><div><p class="eyebrow">HOW CAUSEWAY WORKS</p><h3>From source to decision trace</h3></div><span class="panel-index">01 — 04</span></div><div class="pathway"><div class="path-step"><span>01</span><div><strong>Capture evidence</strong><small>Attach a paper, dataset or field note.</small></div><b>↘</b></div><div class="path-step"><span>02</span><div><strong>Expose assumptions</strong><small>See which mechanisms it can inform.</small></div><b>↘</b></div><div class="path-step"><span>03</span><div><strong>Pair interventions</strong><small>Keep event shocks aligned by seed.</small></div><b>↘</b></div><div class="path-step"><span>04</span><div><strong>Inspect the receipt</strong><small>Export raw outcomes and model version.</small></div><b>✓</b></div></div></article>
+        </div>
+        <div class="honesty-note"><span class="honesty-icon">i</span><div><strong>Interpret as a model comparison, not a basin forecast.</strong><span>All farms, behaviours and water dynamics in this starter world are illustrative. No field data is included.</span></div><button class="text-button" data-go="model">Read the model boundary →</button></div>
+      </section>
+
+      <section class="view" id="view-explore" aria-labelledby="exploreTitle">
+        <div class="view-title-row"><div><p class="eyebrow">EXPERIMENT STUDIO <span class="eyebrow-line"></span> PAIRED RUNS</p><h1 id="exploreTitle">Compare policy paths.</h1><p class="lede">The same keyed weather, market and agent events flow through every policy arm.</p></div><button class="outline-button" data-go="model">Review assumptions <span>↗</span></button></div>
+        <div class="experiment-layout">
+          <div class="experiment-main">
+            <article class="panel config-panel">
+              <div class="panel-head"><div><p class="eyebrow">STUDY DESIGN</p><h3>Set the conditions</h3></div><span class="panel-index">CONFIG 01</span></div>
+              <div class="config-grid">
+                <label class="form-field"><span>Seed pairs</span><select id="replicates"><option value="32">32 pairs · quick</option><option value="64" selected>64 pairs · balanced</option><option value="128">128 pairs · detailed</option><option value="256">256 pairs · extended</option></select><small>Every pair shares event keys across policies.</small></label>
+                <label class="form-field"><span>Starting seed</span><input id="baseSeed" type="number" min="0" max="4294967295" value="41627"><small>Reuse this value to reproduce the run.</small></label>
+                <label class="form-field"><span>World conditions</span><select id="stress"><option value="seasonal">Seasonal year</option><option value="drought" selected>Prolonged drought</option><option value="compound">Drought + high demand</option></select><small>A shared external stress across every arm.</small></label>
+                <div class="form-field run-field"><span>Run the comparison</span><button class="primary-button run-button" id="runExperiment">Run 4 policy packages <span>→</span></button><small id="runHint">64 matched seeds · 4 model variants · 52 weeks</small></div>
+              </div>
+              <div class="progress-wrap" id="progressWrap" hidden><div class="progress-copy"><span id="progressLabel">Preparing study…</span><button class="text-button" id="cancelRun">Cancel</button></div><div class="progress-track"><span id="progressBar"></span></div></div>
+            </article>
+
+            <article class="panel policy-panel">
+              <div class="panel-head"><div><p class="eyebrow">POLICY ARMS</p><h3>Four routes through the same world</h3></div><span class="paired-tag"><i></i> COMMON RANDOM EVENTS</span></div>
+              <div class="policy-list" id="policyList"></div>
+              <div class="custom-policy-box"><div class="custom-policy-head"><div><strong>Your policy package</strong><small>Adjust the levers, then compare against current practice.</small></div><span class="custom-icon">✳</span></div><div class="policy-controls" id="policyControls"></div></div>
+            </article>
+
+            <article class="panel results-panel" id="resultsPanel">
+              <div class="panel-head"><div><p class="eyebrow">RESULTS <span class="eyebrow-line"></span> <span id="resultScope">NO RUN YET</span></p><h3>What changed across the paired worlds?</h3></div><div class="result-actions"><button class="outline-button small" id="downloadCSV" disabled>Export CSV <span>↓</span></button><button class="outline-button small" id="downloadRun" disabled>Run receipt <span>↓</span></button></div></div>
+              <div class="empty-results" id="emptyResults"><span class="empty-orbit">◎</span><strong>Run a study to populate this view.</strong><span>Results stay on this device. Exact per-seed outcomes can be inspected and exported.</span></div>
+              <div id="resultContent" hidden>
+                <div class="outcome-grid" id="outcomeCards"></div>
+                <div class="chart-controls"><div><p class="eyebrow">WEEKLY TRAJECTORY</p><h4 id="chartTitle">Basin health over 52 weeks</h4></div><div class="chart-filter"><label for="trajectoryMetric">Outcome</label><select id="trajectoryMetric"><option value="basinHealth">Basin health</option><option value="livelihood">Grower livelihood</option><option value="smallholderEquity">Small-grower equity</option></select><label for="trajectoryVariant">Model lens</label><select id="trajectoryVariant"></select></div></div>
+                <div class="chart-wrap"><div class="chart-axis-labels"><span>100</span><span>75</span><span>50</span><span>25</span><span>0</span></div><svg id="trajectoryChart" viewBox="0 0 780 260" role="img" aria-label="Weekly outcome trajectories across policy packages"></svg></div>
+                <div class="chart-legend" id="chartLegend"></div>
+                <div class="variant-section"><div class="panel-head compact"><div><p class="eyebrow">ASSUMPTION SENSITIVITY</p><h4>Does the recommendation survive a different model?</h4></div><button class="text-button" data-go="model">Inspect mechanisms ↗</button></div><div class="variant-table-wrap" id="variantTable"></div></div>
+                <div class="sensitivity-watch" id="sensitivityWatch"></div>
+                <div class="receipt-strip" id="receiptStrip"></div>
+              </div>
+            </article>
+          </div>
+          <aside class="experiment-side">
+            <article class="side-panel"><p class="eyebrow">COMPARISON GUIDE</p><h3>How to read these numbers</h3><div class="guide-item"><span class="guide-number">01</span><p><strong>Positive deltas favour the policy.</strong> They are paired differences from the same seed's current-practice world.</p></div><div class="guide-item"><span class="guide-number">02</span><p><strong>Intervals describe simulated variation.</strong> The bars use paired standard errors; they do not express field uncertainty.</p></div><div class="guide-item"><span class="guide-number">03</span><p><strong>Check model agreement.</strong> A direction change across the sensitivity variants is a prompt to investigate the mechanism.</p></div><a class="side-link" href="#model" data-go="model">Open the model notes <span>→</span></a></article>
+            <article class="side-panel method-callout"><div class="method-glyph">⌘</div><p class="eyebrow">METHOD NOTE</p><h3>Why key the random events?</h3><p>If every scenario consumes a shared random stream in a different order, an early treatment effect can scramble later comparisons. Causeway derives each exogenous draw from its event key, so the same seed-week-agent event remains paired across diverging paths.</p><a href="https://arxiv.org/abs/2603.11084" target="_blank" rel="noreferrer">Read the 2026 methods preprint ↗</a></article>
+          </aside>
+        </div>
+      </section>
+
+      <section class="view" id="view-model" aria-labelledby="modelTitle">
+        <div class="view-title-row"><div><p class="eyebrow">MODEL INSPECTOR <span class="eyebrow-line"></span> VERSION 0.2.0</p><h1 id="modelTitle">Open the black box.</h1><p class="lede">A small rules-based agent model. Every slider here is an assumption you can challenge.</p></div><button class="outline-button" id="resetParameters">Reset model inputs <span>↺</span></button></div>
+        <div class="model-grid">
+          <article class="panel mechanism-panel"><div class="panel-head"><div><p class="eyebrow">CAUSAL SKETCH</p><h3>What moves the outcomes?</h3></div><span class="model-badge small-badge"><i></i> CONCEPTUAL</span></div><div class="causal-map" id="causalMap"></div><div class="map-caption"><span class="map-line"></span> Modelled direction <span class="map-dash"></span> External shock</div><p class="model-caveat">Arrows show the rules in this toy model, not confirmed causal effects in a real watershed. Select a mechanism to inspect its current input.</p></article>
+          <article class="panel assumptions-panel"><div class="panel-head"><div><p class="eyebrow">EDITABLE ASSUMPTIONS</p><h3>Parameter desk</h3></div><span class="editable-tag">LOCAL CHANGES</span></div><p class="assumption-intro">Values are illustrative starting points. Changing one updates the next experiment, not any saved run.</p><div id="parameterControls"></div></article>
+          <article class="panel actors-panel"><div class="panel-head"><div><p class="eyebrow">AGENT ROLES</p><h3>Who acts in the world?</h3></div><span class="panel-index">12 + 1 + 1</span></div><div class="actor-list"><div class="actor-row"><span class="actor-icon small">S</span><div><strong>Smallholders <small>× 4</small></strong><span>Lower water demand, higher grant reach, sensitive to allocation equity.</span></div><span class="actor-role">GROWERS</span></div><div class="actor-row"><span class="actor-icon medium">M</span><div><strong>Mixed farms <small>× 4</small></strong><span>Adopt practices through grants, forecasts and neighbour behaviour.</span></div><span class="actor-role">GROWERS</span></div><div class="actor-row"><span class="actor-icon large">H</span><div><strong>High-input farms <small>× 4</small></strong><span>Higher demand and a higher threshold for practice adoption.</span></div><span class="actor-role">GROWERS</span></div><div class="actor-row"><span class="actor-icon authority">A</span><div><strong>Basin authority <small>× 1</small></strong><span>Applies the quota cap and allocates scarce water under the fairness rule.</span></div><span class="actor-role">COORDINATOR</span></div><div class="actor-row"><span class="actor-icon steward">R</span><div><strong>River steward <small>× 1</small></strong><span>Represents restoration response through buffer coverage.</span></div><span class="actor-role">LANDSCAPE</span></div></div></article>
+          <article class="panel variant-panel"><div class="panel-head"><div><p class="eyebrow">STRUCTURAL SENSITIVITY</p><h3>Four model lenses</h3></div><span class="panel-index">ONE CHANGE EACH</span></div><div id="modelVariantList"></div><div class="variant-footnote">Sensitivity multipliers are transparent stress tests, not estimated posterior probabilities.</div></article>
+        </div>
+        <div class="honesty-note full-note"><span class="honesty-icon">i</span><div><strong>Model boundary</strong><span>No real hydrology, farm survey, species, policy code or observation data is included. Read the full scope and intended use before interpreting any result.</span></div><a class="text-button" href="docs/model-boundaries.md" target="_blank">Open model boundaries ↗</a></div>
+      </section>
+
+      <section class="view" id="view-evidence" aria-labelledby="evidenceTitle">
+        <div class="view-title-row"><div><p class="eyebrow">EVIDENCE LIBRARY <span class="eyebrow-line"></span> SOURCE TRACE</p><h1 id="evidenceTitle">Keep the model answerable.</h1><p class="lede">Attach references, pilot notes or observed data to the mechanism they can inform. Nothing is auto-scored.</p></div><span class="local-badge"><span class="live-dot"></span> STORED LOCALLY</span></div>
+        <div class="evidence-grid">
+          <div class="evidence-main"><article class="panel evidence-summary"><div class="evidence-summary-mark">↳</div><div><p class="eyebrow">PROVENANCE CHAIN</p><h3>Source → mechanism → run → outcome</h3><p>Causeway keeps source records alongside the run receipt. A reference can motivate or constrain a mechanism; it does not validate the simulator by itself.</p></div><div class="provenance-nodes"><span>Source</span><b>→</b><span>Assumption</span><b>→</b><span>Paired run</span><b>→</b><span>Outcome</span></div></article>
+            <article class="panel sources-panel"><div class="panel-head"><div><p class="eyebrow">SOURCES & NOTES</p><h3>What informs this workspace?</h3></div><div class="source-tools"><span id="evidenceCount">0 records</span><input id="sourceSearch" type="search" placeholder="Search sources…" aria-label="Search sources"></div></div><div id="sourceList" class="source-list"></div></article></div>
+          <aside class="panel add-source-panel"><p class="eyebrow">ADD A RECORD</p><h3>Capture something worth checking.</h3><form id="sourceForm">
+            <label class="form-field"><span>Title</span><input id="sourceTitle" maxlength="140" required placeholder="Paper, dataset or field note"></label>
+            <label class="form-field"><span>Link <small>optional</small></span><input id="sourceUrl" type="url" maxlength="500" placeholder="https://…"></label>
+            <label class="form-field"><span>Mechanism it may inform</span><select id="sourceMechanism"></select></label>
+            <label class="form-field"><span>Why is it relevant?</span><textarea id="sourceNote" rows="4" maxlength="600" placeholder="Record the scope, finding or limitation you want to revisit."></textarea></label>
+            <button class="primary-button" type="submit">Add source record <span>＋</span></button>
+          </form><p class="form-privacy">Stored only in this browser profile. Links are opened directly; Causeway does not fetch their contents.</p></aside>
+        </div>
+      </section>
+
+      <section class="view" id="view-ledger" aria-labelledby="ledgerTitle">
+        <div class="view-title-row"><div><p class="eyebrow">RUN LEDGER <span class="eyebrow-line"></span> REPRODUCIBILITY</p><h1 id="ledgerTitle">Every run leaves a receipt.</h1><p class="lede">Keep a searchable record of what was run, under which assumptions, and where results diverged.</p></div><button class="outline-button" id="clearLedger">Clear ledger <span>×</span></button></div>
+        <article class="panel ledger-intro"><span class="ledger-glyph">◷</span><div><p class="eyebrow">LOCAL RUN HISTORY</p><h3>Receipts contain configuration, seed pairs, event-keying method, model variants and raw per-seed outcomes.</h3><p>Receipts are descriptive outputs from a synthetic simulation. Export a receipt before changing the study if you need to preserve it elsewhere.</p></div><div class="ledger-count"><strong id="ledgerCountLarge">0</strong><span>saved runs</span></div></article>
+        <div id="ledgerList" class="ledger-list"></div>
+        <div class="empty-ledger" id="emptyLedger"><span class="empty-orbit">◷</span><strong>Your run ledger is empty.</strong><span>Run a policy study to create the first receipt.</span><button class="text-button" data-go="explore">Open experiment studio →</button></div>
+      </section>
+
+      <footer class="footer"><span>CAUSEWAY <span class="footer-sep">·</span> LOCAL RESEARCH WORKBENCH</span><span>MODEL 0.2.0 <span class="footer-sep">·</span> <a href="docs/research-basis.md" target="_blank">Research basis</a> <span class="footer-sep">·</span> <a href="docs/model-boundaries.md" target="_blank">Boundaries</a></span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
